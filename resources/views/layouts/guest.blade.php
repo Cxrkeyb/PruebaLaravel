@@ -11,28 +11,10 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        @production
-        @php $path = public_path('build\assets'); @endphp
-    
-        @if (file_exists($path))
-            @foreach (scandir($path) as $file)
-                @if (strpos($file, '.css'))
-                    <link rel="stylesheet" href="{{ asset('build/assets/' . $file) }}">
-                @endif
-                @if (strpos($file, '.js'))
-                    @push('scripts')
-                        <script src="{{ asset('build/assets/' . $file) }}"></script>
-                    @endpush()
-                @endif
-            @endforeach
-        @endif
-        @else
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @endproduction
-    
-
         <!-- Styles -->
         @livewireStyles
+        @vite('resources/js/app.js')
+
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
